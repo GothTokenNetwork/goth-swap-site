@@ -4,14 +4,14 @@
         "decimals": 18,
         "name": "GOTH Token v2",
         "symbol": "GOTH",
-        "logoURI": "https://github.com/GothTokenNetwork/goth-swap-site/blob/main/goth-top-list/testnet/0x2A3C5c3206BDD52bE513b0eEeFD07aE059E45386/logo.png?raw=true"
+        "logoURI": "https://boiling-wildwood-67782.herokuapp.com/https://github.com/GothTokenNetwork/goth-swap-site/blob/main/goth-top-list/testnet/0x2A3C5c3206BDD52bE513b0eEeFD07aE059E45386/logo.png?raw=true"
     },
     {
         "address": "0x5e6e168933f96E62d721982123c5a11B0e288440",
         "decimals": 18,
         "name": "Wrapped AVAX",
         "symbol": "WAVAX",
-        "logoURI": "https://github.com/GothTokenNetwork/goth-swap-site/blob/main/goth-top-list/testnet/0x5e6e168933f96E62d721982123c5a11B0e288440/logo.png?raw=true"
+        "logoURI": "https://boiling-wildwood-67782.herokuapp.com/https://github.com/GothTokenNetwork/goth-swap-site/blob/main/goth-top-list/testnet/0x5e6e168933f96E62d721982123c5a11B0e288440/logo.png?raw=true"
     }
 ]
 
