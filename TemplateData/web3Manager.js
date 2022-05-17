@@ -42,32 +42,19 @@ function connect() {
 }
 
 function addTokenToWallet (address, symbol, image){
-    ethereum
-        .request({
-            method: 'wallet_watchAsset',
-            params: 
-            {
-                type: 'ERC20',
-                options: 
-                {
-                    address: address,
-                    symbol: symbol,
-                    decimals: 18,
-                    image: image,
-                },
-            },
-        })
-        .then((success) => {
-        if (success) 
-        {
-            console.log('Token successfully added to wallet!');
-        } 
-        else 
-        {
-            throw new Error('Something went wrong.');
-        }
-    })
-    .catch(console.error);
+    ethereum.request({
+    method: 'wallet_watchAsset',
+    params: 
+    {
+      type: 'ERC20',
+      options: {
+        address: address,
+        symbol: symbol,
+        decimals: 18,
+        image: image,
+      },
+    },
+  });
 }
 
 ethereum.on('chainChanged', (chainId) => {
