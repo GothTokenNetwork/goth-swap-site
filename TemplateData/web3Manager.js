@@ -6,7 +6,12 @@ else
     alert("Non-Ethereum browser detected. Please connect to a wallet");
 }
 
-const routerAddress = '0x725E7C052D6A7408f9685348F6D06189c3e09C3c';
+main()
+
+async function main ()
+{
+    ethereum.on('accountsChanged', accounts => handleAccountsChanged(accounts));
+}
 
 //#region CONNECTION & ACCOUNT HANDLING
 let currentAccount = null;
