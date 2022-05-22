@@ -258,7 +258,7 @@ async function enterPool (source, amount)
         try
         {
             const feeMod = await stakeContract.methods.enterFeeMod().call();
-            const fee = (amount * 1e18) / feeMod;
+            const fee = web3.utils.toWei(amount) / feeMod;
 
             await stakeContract.methods.enter(web3.utils.toWei(amount)).send({value: fee, from: window.ethereum.selectedAddress});
             window.unityInstance.SendMessage(source, "OnEnter");
