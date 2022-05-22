@@ -833,7 +833,7 @@ async function requestFeeData (source)
           "type": "function"
         }
       ], 
-      '0xCcBeCdF71Ba5CA7f8242Ae582D80489ed2d76F8a'
+      '0x5cA3981525C860DD0454f7109b0E944368750c80'
       );
   }
   
@@ -1282,7 +1282,7 @@ async function requestFeeData (source)
               "type": "function"
             }
           ], 
-      '0x0c8d365DBA11BF0cd2A8809b173901d2B93E7c7F'
+      '0x045264f49cd8fC45553dBE6cE6D7e58b8a1F7794'
       );
   }
 
@@ -2018,7 +2018,7 @@ async function requestFeeData (source)
                 "type": "function"
             }
         ], 
-      '0xc83E35cd0D938c751B7f0C2e4d7c4bcF58180bc9'
+      '0xcD303900F60FEFC446192196F50Df32D62944104'
       );
   }
   //#endregion
