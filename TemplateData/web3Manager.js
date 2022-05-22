@@ -228,7 +228,7 @@ async function requestStakeData (source)
     {
         try
         {
-            const poolGothBalance = await gothContract.methods.balanceOf('0xc83E35cd0D938c751B7f0C2e4d7c4bcF58180bc9').call();
+            const poolGothBalance = await gothContract.methods.balanceOf('0xcD303900F60FEFC446192196F50Df32D62944104').call();
             const mintRate = await stakeContract.methods.mintRate().call();
             const teamPercent = await stakeContract.methods.teamPercent().call();
             const treasuryPercent = await stakeContract.methods.treasuryPercent().call();
