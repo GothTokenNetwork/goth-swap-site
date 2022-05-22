@@ -86,7 +86,7 @@ async function balanceOf (contractAddress, source)
         {
             const balance = await contract.methods.balanceOf(window.ethereum.selectedAddress).call();
             window.unityInstance.SendMessage(source, "OnBalanceUpdate", web3.utils.fromWei(balance, 'ether'));
-            console.log('Balance of ' + contractAddress + ' has been retrieved - ' + web3.utils.fromWei(balance, 'ether'));
+            //console.log('Balance of ' + contractAddress + ' has been retrieved - ' + web3.utils.fromWei(balance, 'ether'));
         }
         catch(err)
         {
