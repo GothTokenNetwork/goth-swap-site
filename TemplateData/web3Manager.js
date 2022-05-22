@@ -6,12 +6,7 @@ else
     alert("Non-Ethereum browser detected. Please connect to a wallet");
 }
 
-main()
-
-async function main ()
-{
-    ethereum.on('accountsChanged', accounts => handleAccountsChanged(accounts));
-}
+const routerAddress = '0x725E7C052D6A7408f9685348F6D06189c3e09C3c';
 
 //#region CONNECTION & ACCOUNT HANDLING
 let currentAccount = null;
@@ -47,19 +42,32 @@ function connect() {
 }
 
 function addTokenToWallet (address, symbol, image){
-    ethereum.request({
-    method: 'wallet_watchAsset',
-    params: 
-    {
-      type: 'ERC20',
-      options: {
-        address: address,
-        symbol: symbol,
-        decimals: 18,
-        image: image,
-      },
-    },
-  });
+    ethereum
+        .request({
+            method: 'wallet_watchAsset',
+            params: 
+            {
+                type: 'ERC20',
+                options: 
+                {
+                    address: address,
+                    symbol: symbol,
+                    decimals: 18,
+                    image: image,
+                },
+            },
+        })
+        .then((success) => {
+        if (success) 
+        {
+            console.log('Token successfully added to wallet!');
+        } 
+        else 
+        {
+            throw new Error('Something went wrong.');
+        }
+    })
+    .catch(console.error);
 }
 
 ethereum.on('chainChanged', (chainId) => {
@@ -250,7 +258,7 @@ async function enterPool (source, amount)
         try
         {
             const feeMod = await stakeContract.methods.enterFeeMod().call();
-            const fee = Math.round(web3.utils.toWei(amount) / feeMod);
+            const fee = (amount * 1e18) / feeMod;
 
             await stakeContract.methods.enter(web3.utils.toWei(amount)).send({value: fee, from: window.ethereum.selectedAddress});
             window.unityInstance.SendMessage(source, "OnEnter");
