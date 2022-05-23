@@ -10,7 +10,7 @@ const routerAddress = '0x725E7C052D6A7408f9685348F6D06189c3e09C3c';
 
 //#region CONNECTION & ACCOUNT HANDLING
 let currentAccount = null;
-function handleAccountsChanged(accounts) 
+async function handleAccountsChanged(accounts) 
 {
     if (accounts.length === 0) 
     {
