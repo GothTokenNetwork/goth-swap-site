@@ -21,7 +21,7 @@ function handleAccountsChanged(accounts)
     {
         currentAccount = accounts[0];
         console.log('Connected With:', window.ethereum.selectedAddress);
-        const chainId = ethereum.request({ method: 'eth_chainId' });
+        const chainId = await ethereum.request({ method: 'eth_chainId' });
         window.unityInstance.SendMessage('Metamask', 'OnConnected', window.ethereum.selectedAddress + "," + chainId);
     }
 }
