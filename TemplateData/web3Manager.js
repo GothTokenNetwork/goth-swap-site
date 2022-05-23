@@ -3,7 +3,7 @@ if (window.ethereum) {
 } 
 else 
 {
-    alert("Non-Ethereum browser detected. Please connect to a wallet");
+    //alert("Non-Ethereum browser detected. Please connect to a wallet");
 }
 
 const routerAddress = '0x725E7C052D6A7408f9685348F6D06189c3e09C3c';
