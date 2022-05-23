@@ -216,6 +216,11 @@ async function setParam (param)
 
 async function getAvaxBalance (source, address)
 {
+    if (web3 == null) 
+    {
+        return;
+    }
+
     const balance = await web3.eth.getBalance(address);
     window.unityInstance.SendMessage(source, "OnAvaxBalance", web3.utils.fromWei(balance, 'ether'));
 }
