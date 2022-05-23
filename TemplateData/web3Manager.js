@@ -77,7 +77,7 @@ ethereum.on('chainChanged', (chainId) => {
 });
 
 ethereum.on('accountsChanged', (accounts) => {
-    window.unityInstance.SendMessage('Metamask', 'OnConnected');
+    window.unityInstance.SendMessage('Metamask', 'OnConnected', accounts[0]);
 });
 //#endregion
 
