@@ -75,6 +75,10 @@ ethereum.on('chainChanged', (chainId) => {
   window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
   window.location.reload();
 });
+
+ethereum.on('accountsChanged', (accounts) => {
+    window.unityInstance.SendMessage('Metamask', 'OnConnected');
+});
 //#endregion
 
 //#region ERC20 Functions
