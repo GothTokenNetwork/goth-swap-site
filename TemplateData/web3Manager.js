@@ -7,6 +7,7 @@ else
 }
 
 const routerAddress = '0x725E7C052D6A7408f9685348F6D06189c3e09C3c';
+let chaindID = '';
 
 //#region CONNECTION & ACCOUNT HANDLING
 let currentAccount = null;
@@ -22,6 +23,7 @@ async function handleAccountsChanged(accounts)
         currentAccount = accounts[0];
         console.log('Connected With:', window.ethereum.selectedAddress);
         const chainId = await ethereum.request({ method: 'eth_chainId' });
+        chaindID = chainId;
         window.unityInstance.SendMessage('Metamask', 'OnConnected', window.ethereum.selectedAddress + "," + chainId);
     }
 }
