@@ -3,7 +3,7 @@ if (window.ethereum) {
     web3 = new Web3(window.ethereum);
     ethereum.on('chainChanged', (chainId) => {
         window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
-        window.location.reload();
+        //window.location.reload();
     });
     
     ethereum.on('accountsChanged', (accounts) => {
