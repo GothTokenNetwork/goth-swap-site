@@ -279,6 +279,7 @@ async function enterPool (source, amount)
         {
             window.unityInstance.SendMessage(source, "OnEnterFailed");
             console.log(err);
+            alert(err);        
         }
     }
 }
