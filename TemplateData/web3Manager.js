@@ -72,13 +72,14 @@ function addTokenToWallet (address, symbol, image){
 }
 
 ethereum.on('chainChanged', (chainId) => {
-  window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
-  window.location.reload();
+    window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
+    window.location.reload();
 });
 
 ethereum.on('accountsChanged', (accounts) => {
-    window.unityInstance.SendMessage('Metamask', 'OnConnected', accounts[0]);
+    window.unityInstance.SendMessage('Metamask', 'OnConnected');
 });
+
 //#endregion
 
 //#region ERC20 Functions
