@@ -8,6 +8,7 @@ if (window.ethereum) {
     ethereum.on('accountsChanged', (accounts) => {
         window.unityInstance.SendMessage('Metamask', 'OnConnected', accounts[0] + "," + chaindID);
     });
+    
 } 
 else 
 {
@@ -80,8 +81,6 @@ function addTokenToWallet (address, symbol, image){
     })
     .catch(console.error);
 }
-
-
 //#endregion
 
 //#region ERC20 Functions
