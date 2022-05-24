@@ -1,5 +1,13 @@
 if (window.ethereum) {
     web3 = new Web3(window.ethereum);
+    ethereum.on('chainChanged', (chainId) => {
+        window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
+        window.location.reload();
+    });
+    
+    ethereum.on('accountsChanged', (accounts) => {
+        window.unityInstance.SendMessage('Metamask', 'OnConnected', accounts[0] + "," + chaindID);
+    });
 } 
 else 
 {
@@ -73,14 +81,6 @@ function addTokenToWallet (address, symbol, image){
     .catch(console.error);
 }
 
-ethereum.on('chainChanged', (chainId) => {
-    window.unityInstance.SendMessage('Metamask', 'OnNetworkChanged');
-    window.location.reload();
-});
-
-ethereum.on('accountsChanged', (accounts) => {
-    window.unityInstance.SendMessage('Metamask', 'OnConnected', accounts[0] + "," + chaindID);
-});
 
 //#endregion
 
