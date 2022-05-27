@@ -102,6 +102,25 @@ async function balanceOf (contractAddress, source)
         }
     }
 }
+
+async function feeAddressGoth (source)
+{
+    const cotnract = GetIERC20('0x045264f49cd8fC45553dBE6cE6D7e58b8a1F7794');
+    if (contract != null)
+    {
+        try 
+        {
+            const balance = await contract.methods.balanceOf('0x7528f6cbcd88A13C11547E1141E89Bc0fb370c2e').call();
+            window.unityInstance.SendMessage(source, "OnFeeAddressGoth", web3.utils.fromWei(balance, 'ether'));
+            //console.log('Balance of ' + contractAddress + ' has been retrieved - ' + web3.utils.fromWei(balance, 'ether'));
+        }
+        catch(err)
+        {
+            window.unityInstance.SendMessage(source, "OnFeeAddressGothFailed");
+            console.log(err);
+        }
+    }
+}
   
 async function approve (contractAddress, amount, source, spender) 
 {
@@ -115,7 +134,7 @@ async function approve (contractAddress, amount, source, spender)
             if (approve)
             {
                 window.unityInstance.SendMessage(source, "OnApprove");
-                console.log(contractAddress + ' has been approved to spend on behalf of ' + window.ethereum.selectedAddress + ' - ' + amount);
+                //console.log(contractAddress + ' has been approved to spend on behalf of ' + window.ethereum.selectedAddress + ' - ' + amount);
             }
             else
             {
@@ -140,7 +159,7 @@ async function allowance (contractAddress, spender, source)
         {           
             const allowance = await contract.methods.allowance(window.ethereum.selectedAddress, spender).call();
             window.unityInstance.SendMessage(source, "OnAllowanceUpdate", web3.utils.fromWei(allowance, 'ether'));
-            console.log('Allowance of ' + spender + ' - ' + web3.utils.fromWei(allowance, 'ether'));
+            //console.log('Allowance of ' + spender + ' - ' + web3.utils.fromWei(allowance, 'ether'));
         }
         catch (err)
         {
@@ -241,6 +260,7 @@ async function requestStakeData (source)
         try
         {
             const poolGothBalance = await gothContract.methods.balanceOf('0xcD303900F60FEFC446192196F50Df32D62944104').call();
+            //const poolGothBalance = await gothContract.methods.balanceOf('0xc83E35cd0D938c751B7f0C2e4d7c4bcF58180bc9').call();
             const mintRate = await stakeContract.methods.mintRate().call();
             const teamPercent = await stakeContract.methods.teamPercent().call();
             const treasuryPercent = await stakeContract.methods.treasuryPercent().call();
@@ -270,18 +290,15 @@ async function enterPool (source, amount)
         try
         {
             const feeMod = await stakeContract.methods.enterFeeMod().call();
-            const fee = amount / feeMod;
+            const fee = Math.round(web3.utils.toWei(amount)  / feeMod);
 
-            console.log(web3.utils.toWei(fee.toFixed(17)));
-
-            await stakeContract.methods.enter(web3.utils.toWei(amount)).send({value: web3.utils.toWei(fee.toFixed(17)), from: window.ethereum.selectedAddress});
+            await stakeContract.methods.enter(web3.utils.toWei(amount)).send({value: fee, from: window.ethereum.selectedAddress});
             window.unityInstance.SendMessage(source, "OnEnter");
         }
         catch(err)
         {
             window.unityInstance.SendMessage(source, "OnEnterFailed");
             console.log(err);
-            alert(err);        
         }
     }
 }
@@ -849,6 +866,7 @@ async function requestFeeData (source)
         }
       ], 
       '0x5cA3981525C860DD0454f7109b0E944368750c80'
+      //'0xe65c5e84bfea4a25763d2026bce13f43c8b0f68a'
       );
   }
   
@@ -1297,8 +1315,9 @@ async function requestFeeData (source)
               "type": "function"
             }
           ], 
-      '0x045264f49cd8fC45553dBE6cE6D7e58b8a1F7794'
-      );
+          '0x045264f49cd8fC45553dBE6cE6D7e58b8a1F7794'
+          //'0x0c8d365DBA11BF0cd2A8809b173901d2B93E7c7F'
+        );
   }
 
   function GetGothStakeContract ()
@@ -2033,8 +2052,9 @@ async function requestFeeData (source)
                 "type": "function"
             }
         ], 
-      '0xcD303900F60FEFC446192196F50Df32D62944104'
-      );
+        '0xcD303900F60FEFC446192196F50Df32D62944104'
+        //'0xc83E35cd0D938c751B7f0C2e4d7c4bcF58180bc9'
+        );
   }
   //#endregion
   
